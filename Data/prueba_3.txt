@@ -1,0 +1,52 @@
+formulario ~>> [
+    <
+        tipo: "etiqueta",
+        valor: "Apellido:"
+    >,
+    <
+        tipo: "texto",
+        valor: "Apellido",
+        fondo: "Ingrese Apellido"
+    >,
+    <
+        tipo: "etiqueta",
+        valor: "Nombre:"
+    >,
+    <
+        tipo: "texto",
+        valor: "Nombre",
+        fondo: "Ingrese nombre"
+    >,
+    <
+        tipo: "grupo-radio",
+        nombre: "Sexo",
+        valores: ['Masculino', 'Femenino']
+
+    >,    
+    <
+        tipo: "grupo-radio",
+        nombre: "Color",
+        valores: ['Rojo', 'Azul','Amarillo']
+
+    >,
+    <
+        tipo: "grupo-option",
+        nombre: "pais",
+        valores: ['Guatemala', 'El Salvador', 'Honduras']
+    >,
+    <
+        tipo: "grupo-option",
+        nombre: "Ciudad",
+        valores: ['Guatemala', 'San Salvador', 'Tegucigalpa']
+    >,
+    <
+        tipo: "boton",
+        valor: "valor",
+        evento: <ENTRADA>
+    >
+    <
+        tipo: "boton",
+        valor: "enter",
+        evento: <INFO>
+    >
+]

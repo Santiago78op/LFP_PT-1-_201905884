@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+     <!-- CSS -->
+    <link rel="stylesheet" href="../..{{ url_for('static', filename='style.css') }}">
+
+     <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+
+    <!-- Los iconos tipo Solid de Fontawesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+    <title>Form</title>
+</head>
+<body>
+    <div class="modal-dialog text-center">
+        <div class="col-sm-8 main-section">
+            <div class="modal-content">
+                <form class="col-12">
+                    <div class="form-group">
+                        <h1>Reporte Fomulario</h1>
+                    </div>              
+                    {% if etiquetas != None %}
+                        {% for etiquetado in etiquetas%}
+                            {% for etiqueta in etiquetado %}
+                                <div class="form-group">
+                                    <{{etiqueta.get('tipo')}}>{{etiqueta.get('valor')}}</{{etiqueta.get('tipo')}}>
+                                </div>
+                                {% if textos != None %}
+                                    {% for texteado in textos %}
+                                        {% for texto in texteado %}
+                                            {% if (texto.get('valor')+":") == etiqueta.get('valor') or (texto.get('valor')) == etiqueta.get('valor') %}
+                                                <{{texto.get('tipo')}} type="text" name="entrada" id="entrada" class="form-control" placeholder="{{texto.get('fondo')}}">
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                    {% endif %}
+                    {% if grupo_radios != None %}
+                        {% for grupo_radiodos in grupo_radios %}
+                            {% for grupo_radio in grupo_radiodos%}
+                                <p>{{grupo_radio.get('nombre')}}:</p>
+                                {% for elemento in grupo_radio.get('valores')%}
+                                <input class="form-check-input" type="{{grupo_radio.get('tipo')}}" name="{{grupo_radio.get('nombre')}}" id="{{elemento}}">{{elemento}}
+                                {% endfor %}
+                                <br> 
+                            {% endfor %}
+                        {% endfor %}
+                    {% endif %}
+                    {% if grupo_options != None %}
+                        {% for grupo_optiondos in grupo_options %}
+                            {% for grupo_option in grupo_optiondos%}
+                                <{{grupo_option.get('tipo')}} class="form-select" name="{{grupo_option.get('nombre')}}" aria-label="Default select example">
+                                <option selected>{{grupo_option.get('nombre')}}</option>
+                                {% for element in grupo_option.get('valores') %}
+                                    <option value="{{element}}">{{element}}</option>
+                                {% endfor %}    
+                                </{{grupo_option.get('tipo')}}>
+                            {% endfor %}
+                        {% endfor %}
+                    {% endif %}
+                    {% if botons != None %}
+                       {% for botonsdo in botons %}
+                            {% for boton in botonsdo %}
+                                {% if boton.get('evento') == 'entrada'%}
+                                    <{{boton.get('tipo')}} type="button" class="btn btn-primary" onclick="Entrada()"><i class="fas fa-sign-in-alt"></i>  {{boton.get('valor')}}</{{boton.get('tipo')}}>
+                                    <div class="embed-responsive embed-responsive-16by9">
+                                        <iframe class="embed-responsive-item" id="myframe" allowfullscreen>
+                                        </iframe>
+                                    </div>
+                                {% elif boton.get('evento') == 'info' %}
+                                    <{{boton.get('tipo')}} type="button"  class="btn btn-primary" onclick="GetById();"><i class="fas fa-sign-in-alt"></i>  {{boton.get('valor')}}</{{boton.get('tipo')}}>
+                                    <div id="div1">
+                                        Data
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                       {% endfor %}
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>  
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Js -->
+    <script src="../..{{ url_for('Js', filename='form.js') }}"></script>
+</body>
+</html>

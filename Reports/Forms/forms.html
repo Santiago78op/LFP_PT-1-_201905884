@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/style.css">
+
+     <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+
+    <!-- Los iconos tipo Solid de Fontawesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+
+    <title>Form</title>
+</head>
+<body>
+    <div class="modal-dialog text-center">
+        <div class="col-sm-8 main-section">
+            <div class="modal-content">
+                <form class="col-12">
+                    <div class="form-group">
+                        <h1>Reporte Fomulario</h1>
+                    </div>              
+                    
+                        
+                            
+                                <div class="form-group">
+                                    <label>apellido:</label>
+                                </div>
+                                
+                                    
+                                        
+                                            
+                                                <input type="text" name="entrada" id="entrada" class="form-control" placeholder="ingrese apellido">
+                                            
+                                        
+                                    
+                                        
+                                            
+                                        
+                                    
+                                
+                            
+                        
+                            
+                                <div class="form-group">
+                                    <label>nombre:</label>
+                                </div>
+                                
+                                    
+                                        
+                                            
+                                        
+                                    
+                                        
+                                            
+                                                <input type="text" name="entrada" id="entrada" class="form-control" placeholder="ingrese nombre">
+                                            
+                                        
+                                    
+                                
+                            
+                        
+                    
+                    
+                        
+                            
+                                <p>sexo:</p>
+                                
+                                <input class="form-check-input" type="radio" name="sexo" id="masculino">masculino
+                                
+                                <input class="form-check-input" type="radio" name="sexo" id="femenino">femenino
+                                
+                                <br> 
+                            
+                        
+                            
+                                <p>color:</p>
+                                
+                                <input class="form-check-input" type="radio" name="color" id="rojo">rojo
+                                
+                                <input class="form-check-input" type="radio" name="color" id="azul">azul
+                                
+                                <input class="form-check-input" type="radio" name="color" id="amarillo">amarillo
+                                
+                                <br> 
+                            
+                        
+                    
+                    
+                        
+                            
+                                <select class="form-select" name="pais" aria-label="Default select example">
+                                <option selected>pais</option>
+                                
+                                    <option value="guatemala">guatemala</option>
+                                
+                                    <option value="el salvador">el salvador</option>
+                                
+                                    <option value="honduras">honduras</option>
+                                    
+                                </select>
+                            
+                        
+                            
+                                <select class="form-select" name="ciudad" aria-label="Default select example">
+                                <option selected>ciudad</option>
+                                
+                                    <option value="guatemala">guatemala</option>
+                                
+                                    <option value="san salvador">san salvador</option>
+                                
+                                    <option value="tegucigalpa">tegucigalpa</option>
+                                    
+                                </select>
+                            
+                        
+                    
+                    
+                       
+                            
+                                
+                                    <button type="button" class="btn btn-primary" onclick="Entrada()"><i class="fas fa-sign-in-alt"></i>  valor</button>
+                                    <div class="embed-responsive embed-responsive-16by9">
+                                        <iframe class="embed-responsive-item" id="myframe" allowfullscreen>
+                                        </iframe>
+                                    </div>
+                                
+                            
+                       
+                            
+                                
+                                    <button type="button"  class="btn btn-primary" onclick="GetById();"><i class="fas fa-sign-in-alt"></i>  enter</button>
+                                    <div id="div1">
+                                        Data
+                                    </div>
+                                
+                            
+                       
+                    
+                </form>
+            </div>
+        </div>
+    </div>  
+    <script type="text/javascript">
+
+        function GetById()
+        {
+            var entrada= document.getElementsByName("entrada");
+            var result='';
+            for(var i=0; i<entrada.length; i++)
+            {
+            result=result+entrada[i].value +"<br/>";
+            }
+
+            document.getElementById("div1").innerHTML= result;
+
+
+            var ele = document.getElementsByTagName('radios');
+              
+            for(i = 0; i < ele.length; i++) {
+                  
+                if(ele[i].type="radio") {
+                  
+                    if(ele[i].checked)
+                        result=result+ele[i].name+" Value: "+ele[i].value+"<br>";
+
+                                
+                }
+            }
+            
+            document.getElementById("div1").innerHTML= result;
+
+            
+            var my_data = document.getElementsByName('opciones'); 
+            sel_index=my_data[0].selectedIndex
+            sel_index=my_data[0].selectedIndex // Index number of Selection
+            sel_value=my_data[0][sel_index].value 
+            if(sel_index > 0){
+                result=result+sel_value+"<br/>";
+                }else{
+                    result=result+" No Selection"
+                }
+
+            
+
+        }
+
+        
+        function Entrada() {
+            var iframe=document.getElementById("myframe")
+            iframe.src = "../../Data/form.txt";
+        }
+    </script>
+
+</body>
+</html>
